@@ -12,36 +12,38 @@ contract Vault{
 
   /*  
     NOTE: If the depositor is calling this function, then we don't
-    the _account and the transferFrom.
+    the _account and the transferFrom. 
+
+    I am changing it, assuming the depositor is calling it
   */
-  function deposit_token(address _account, address _token, uint256 _amount) public {
+  function deposit_token(address _token, uint256 _amount) public {
 
     ERC20 token = ERC20(_token);  // Set token object
 
-    require(token.balanceOf(_account) >= _amount);  // Verify depositor has funds
+    require(token.balanceOf(msg.sender) >= _amount);  // Verify depositor has funds
 
     // Transfer tokens
     // NOTE: Make sure to approve this address for transfer
-    token.transferFrom(_account, address(this), _amount);
+    token.transferFrom(msg.sender, address(this), _amount);
     
 
     // Update records
-    balanceAddress[_account][_token] += _amount;
+    balanceAddress[msg.sender][_token] += _amount;
     balanceToken[_token] += _amount;
   }
 
   /*
     NOTE: Same as deposit_token
   */
-  function withdrawal_token(address _account, address _token, uint256 _amount) public {
+  function withdrawal_token(address _token, uint256 _amount) public {
     ERC20 token = ERC20(_token);  // Set token object
 
-    require(balanceAddress[_account][_token] >= _amount);  // Verify depositor balance has funds
+    require(balanceAddress[msg.sender][_token] >= _amount);  // Verify depositor balance has funds
 
-    token.transfer(_account, _amount); // Transfer tokens to customer
+    token.transfer(msg.sender, _amount); // Transfer tokens to customer
     
     // Update records
-    balanceAddress[_account][_token] -= _amount;
+    balanceAddress[msg.sender][_token] -= _amount;
     balanceToken[_token] -= _amount;
   }
 
