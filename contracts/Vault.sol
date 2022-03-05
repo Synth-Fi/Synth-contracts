@@ -20,11 +20,11 @@ contract Vault{
 
     ERC20 token = ERC20(_token);  // Set token object
 
-    require(token.balanceOf(msg.sender) >= _amount);  // Verify depositor has funds
+    require(token.balanceOf(msg.sender) >= _amount, "Insufficient funds");  // Verify depositor has funds
 
     // Transfer tokens
     // NOTE: Make sure to approve this address for transfer
-    token.transferFrom(msg.sender, address(this), _amount);
+    require(token.transfer(address(this), _amount));
     
 
     // Update records
