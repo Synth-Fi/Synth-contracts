@@ -81,6 +81,11 @@ contract Vault{
     }
   }
 
+  /*
+    Note: The interest value needs to be adjust depending on how often the 
+    distribution is. We also need a way to only give interest for the balance that 
+    was in there for the distribution period
+  */
   function distribute_interest_all_tokens() public {
     uint256 i;
     for(i = 0; i < tokensInVault.length; i++){
