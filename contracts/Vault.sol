@@ -91,7 +91,7 @@ contract Vault{
   //   return balanceToken[_token];
   // }
 
-  function person_token_balance(address _token) public view returns(uint256){
+  function account_token_balance(address _token) public view returns(uint256){
     return accounts[ids[msg.sender]].balance[_token];
   }
 
