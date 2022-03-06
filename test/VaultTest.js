@@ -31,7 +31,7 @@ describe("Vault tests", function () {
     expect(ownerBalance).to.equal(ethers.utils.parseUnits("0", 18));
 
     // Check vault balance
-    let vaultBalance = await vault.vault_token_balance(wEth.address);
+    let vaultBalance = await wEth.balanceOf(vault.address);
     expect(vaultBalance).to.equal(ethers.utils.parseUnits("0", 18));
 
     // Give depositor some wEth
@@ -46,7 +46,7 @@ describe("Vault tests", function () {
     await vault.deposit_token(wEth.address, ethers.utils.parseUnits("45", 18));
 
     // Check Vault balance of wEth
-    vaultBalance = await vault.vault_token_balance(wEth.address);
+    vaultBalance = await wEth.balanceOf(vault.address);
     expect(vaultBalance).to.equal(ethers.utils.parseUnits("45", 18));
 
     // Check depositor's vault balance
