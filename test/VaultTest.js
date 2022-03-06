@@ -56,6 +56,22 @@ describe("Vault tests", function () {
     expect(ownerBalance).to.equal(ethers.utils.parseUnits("955", 18));
   });
 
+  it("Deposit 2 accounts", async function (){
+    const [owner1, owner2] = await ethers.getSigners();
+
+    await wEth.connect(owner1).give(ethers.utils.parseUnits("1000", 18));                         // Give depositor some wEth
+    await wEth.connect(owner1).approve(vault.address, ethers.utils.parseUnits("45", 18));         // Give vault allowance
+    await vault.connect(owner1).deposit_token(wEth.address, ethers.utils.parseUnits("45", 18));   // Deposit 45 wEth
+
+    await wEth.connect(owner2).give(ethers.utils.parseUnits("1000", 18));                         // Give depositor some wEth
+    await wEth.connect(owner2).approve(vault.address, ethers.utils.parseUnits("300", 18));         // Give vault allowance
+    await vault.connect(owner2).deposit_token(wEth.address, ethers.utils.parseUnits("300", 18));   // Deposit 45 wEth
+
+    expect(await vault.connect(owner1).account_token_balance(wEth.address)).to.equal(ethers.utils.parseUnits("45", 18));  // Check owner1 account balance
+    expect(await vault.connect(owner2).account_token_balance(wEth.address)).to.equal(ethers.utils.parseUnits("300", 18)); // Check owner2 account balance
+
+  })
+
   it("Withdraw some wEth out of vault", async function() {
     const [owner] = await ethers.getSigners();
 
@@ -72,4 +88,17 @@ describe("Vault tests", function () {
     expect(await wEth.balanceOf(vault.address)).to.equal(ethers.utils.parseUnits("25", 18));  // check vault wEth balance
 
   });
+
+  it("Interest distribution", async function() {
+    const [owner] = await ethers.getSigners();
+
+    await wEth.give(ethers.utils.parseUnits("1000", 18));                         // Give depositor some wEth
+    await wEth.approve(vault.address, ethers.utils.parseUnits("45", 18));         // Give vault allowance
+    await vault.deposit_token(wEth.address, ethers.utils.parseUnits("45", 18));   // Deposit 45 wEth
+
+    await vault.distribute_interest_all_tokens();
+
+    expect(await vault.account_token_balance(wEth.address)).to.equal(ethers.utils.parseUnits("47.25", 18));
+
+  })
 });

@@ -17,12 +17,11 @@ contract Vault{
   uint256 accountId;
 
   struct account {
-    uint256 id;
     address depositor;
     mapping(address => uint256) balance;
   }
 
-  uint256 interest = 5000000000000000;  // 5% guaranteed interest
+  uint256 interest = 5 * 10**16;  // 5% guaranteed interest
 
   uint256 currId = 1;
 
@@ -45,6 +44,8 @@ contract Vault{
   address[] tokensInVault;
 
   function deposit_token(address _token, uint256 _amount) public {
+
+    if(ids[msg.sender] == 0) _set_up_new_account(msg.sender);
 
     ERC20 token = ERC20(_token);  // Set token object
 
@@ -75,16 +76,20 @@ contract Vault{
   function _distribute_interest(address _token) internal {
     uint256 i;
     for(i = 1; i < currId; i++){
-      accounts[i].balance[_token] += accounts[i].balance[_token] * interest;
+      accounts[i].balance[_token] += accounts[i].balance[_token] * interest / 10**18;
       // vaultBalance[_token] += accounts[i].balance(_token) * interest;
     }
   }
 
-  function _distribute_interest_all_tokens() internal {
+  function distribute_interest_all_tokens() public {
     uint256 i;
     for(i = 0; i < tokensInVault.length; i++){
       _distribute_interest(tokensInVault[i]);
     }
+  }
+
+  function _set_up_new_account(address _depositor) internal {
+    ids[_depositor] = currId++;
   }
 
   // function vault_token_balance(address _token) public view returns(uint256){
