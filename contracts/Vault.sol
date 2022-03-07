@@ -2,15 +2,8 @@
 
 pragma solidity ^0.8.0;
 
-// import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
-// import '@uniswap/v3-core/contracts/libraries/TickMath.sol';
-// import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
-// import '@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
-// import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
-// import '@uniswap/v3-periphery/contracts/base/LiquidityManagement.sol';
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-// import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 
 /*
   Idea: We could use NFTs as account keys
