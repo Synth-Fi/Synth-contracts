@@ -25,7 +25,7 @@ contract Swapper{
     swapRouter = _swapRouter;
   }
 
-  function swapExactInputSingle(uint256 _amountIn) external returns (uint256 amountOut) {
+  function swapExactInputSingle(address _token0, address _token1, uint256 _amountIn) external returns (uint256 amountOut) {
     //msg.sender must approve this contract
 
     // Transfer the specified amount of token0 to this contract 
@@ -35,8 +35,8 @@ contract Swapper{
 
     ISwapRouter.ExactInputSingleParams memory params = 
       ISwapRouter.ExactInputSingleParams({
-        tokenIn: DAI,
-        tokenOut: WETH9,
+        tokenIn: _token0,
+        tokenOut: _token1,
         fee: poolFee,
         recipient: msg.sender,
         deadline: block.timestamp,
@@ -49,7 +49,7 @@ contract Swapper{
 
   }
 
-  function swapExactOutputsingle(uint256 _amountOut, uint256 _amountInMaximum) external returns (uint256 amountIn){
+  function swapExactOutputsingle(address _token0, address _token1, uint256 _amountOut, uint256 _amountInMaximum) external returns (uint256 amountIn){
 
     // Transfer the specified amount of DIA to this contract
     TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), _amountInMaximum);
@@ -58,8 +58,8 @@ contract Swapper{
 
     ISwapRouter.ExactOutputSingleParams memory params = 
       ISwapRouter.ExactOutputSingleParams({
-        tokenIn: DAI,
-        tokenOut: WETH9,
+        tokenIn: _token0,
+        tokenOut: _token1,
         fee: poolFee,
         recipient: msg.sender,
         deadline: block.timestamp,
@@ -71,8 +71,8 @@ contract Swapper{
     amountIn = swapRouter.exactOutputSingle(params);
 
     if(amountIn < _amountInMaximum){
-      TransferHelper.safeApprove(DAI, address(swapRouter), 0);
-      TransferHelper.safeTransfer(DAI, msg.sender, _amountInMaximum - amountIn);
+      TransferHelper.safeApprove(_token0, address(swapRouter), 0);
+      TransferHelper.safeTransfer(_token0, msg.sender, _amountInMaximum - amountIn);
     }
   }
 
