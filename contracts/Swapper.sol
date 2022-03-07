@@ -6,6 +6,10 @@ pragma abicoder v2;
 import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 
+/* 
+  Idea: I don't know if this contract needs to be separate. It could
+  maybe be in the vault contract
+*/
 contract Swapper{
 
   ISwapRouter public immutable swapRouter;
