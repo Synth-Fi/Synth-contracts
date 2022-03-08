@@ -16,6 +16,47 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-module.exports = {
-  solidity: "0.8.0",
+ module.exports = {
+  solidity: {
+    compilers: [
+      // {
+      //   version: "0.8.0",
+      // },
+      {
+        version: "0.7.6",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
+    ],
+    overrides: {
+      // "contracts/Vault.sol": {
+      //   version: "0.8.0",
+      //   settings: { }
+      // },
+      "contracts/wEth.sol": {
+        version: "0.8.0",
+        settings: { }
+      },
+      "@openzeppelin/contracts4/token/ERC20/IERC20.sol": {
+        version: "0.8.0",
+        settings: { }
+      },
+      "@openzeppelin/contracts4/token/ERC20/ERC20.sol": {
+        version: "0.8.0",
+        settings: { }
+      },
+      "@openzeppelin/contracts4/utils/Context.sol": {
+        version: "0.8.0",
+        settings: { }
+      },
+      "@openzeppelin/contracts4/token/ERC20/extensions/IERC20Metadata.sol": {
+        version: "0.8.0",
+        settings: { }
+      },
+    },
+  },
 };
