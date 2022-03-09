@@ -1,15 +1,4 @@
-# Basic Sample Hardhat Project
+# Synth
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Synth is a decentralized, community-oriented yield farmer. Users can deposit tokens into the Synth vault smart contract which will be used to contribute to the Synth community funds. The community, made up of the depositors, will regularly decide on the best yield farms to stake the Synth community funds. User voting power will be proportional to the amount of funds the user has deposited to the Synth community funds. The interest earned from the yield farms will be distributed into the users' account balance. Users will be able to withdraw tokens from their vault accounts at anytime. 
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
