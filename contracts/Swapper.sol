@@ -8,7 +8,7 @@ import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 
 /* 
   Idea: I don't know if this contract needs to be separate. It could
-  maybe be in the vault contract
+  maybe be in the vault contract.
 */
 contract Swapper{
 

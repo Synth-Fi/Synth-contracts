@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.0; /* Note: Keep an eye for better fixes for the version issues */
 
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
 import "./Swapper.sol";
 
 /*
@@ -115,5 +116,7 @@ contract Vault{
     }
     return false;
   }
+
+  
 
 }
