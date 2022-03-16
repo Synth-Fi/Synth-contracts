@@ -12,7 +12,7 @@ Interest will be regularly distributed to all of the account balances in the Syn
 
 ### Account types 
 
-There will be two types of accounts on the Synth Vault. 
+There will be two types of accounts on the Synth Vault. There will be non-leverage and leverage accounts.
 
 ## Community farming 🚜
 
@@ -20,5 +20,11 @@ The community of Synth users will be able to propose and vote on which yield far
 
 ### Proposals 📝
 
+Proposals can only be made by Synth users and cost a certain amount of Synth tokens to publish. Proposals will be represented on-chain by an NFT holds all of the proposal data such as the proposed farm, percentage of community fund to use, expected return for the community, etc. The proposal NFT will also keep track of all the votes, as well as whether or not the proprosal has been accepted or declined by the community at the end of the voting period. 
+
+Publishers of accepted proposals will be given an extra portion of the interest earned from the proposed yield as a reward for aiming the community towards a great farm. 
 
 ### Voting ⚖️
+
+All users can use their Synth tokens to vote on existing proposals. Besides accepting and declining proposals, users can also use their Synth tokens to publish a counter proposal that contains slight differences from the parent proposal such as changed the proposed percentage of community fund to use. 
+
