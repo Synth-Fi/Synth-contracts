@@ -13,3 +13,12 @@ Interest will be regularly distributed to all of the account balances in the Syn
 ### Account types 
 
 There will be two types of accounts on the Synth Vault. 
+
+## Community farming 🚜
+
+The community of Synth users will be able to propose and vote on which yield farms to create positions on with the community fund. 
+
+### Proposals 📝
+
+
+### Voting ⚖️
