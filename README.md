@@ -28,3 +28,6 @@ Publishers of accepted proposals will be given an extra portion of the interest 
 
 All users can use their Synth tokens to vote on existing proposals. Besides accepting and declining proposals, users can also use their Synth tokens to publish a counter proposal that contains slight differences from the parent proposal such as changing the proposed percentage of community fund to use. 
 
+## Farms and Blockchains
+
+As the community grows, the Synth developing team will be working to increase the amount of farms that the community has access to and developing cross chain functionality for Synth. 
